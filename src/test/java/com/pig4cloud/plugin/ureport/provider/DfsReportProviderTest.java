@@ -1,6 +1,5 @@
 package com.pig4cloud.plugin.ureport.provider;
 
-
 /**
  * @author lengleng
  * @date 2020/7/25
@@ -13,4 +12,5 @@ class DfsReportProviderTest {
 			System.out.println("sdas");
 		}
 	}
+
 }

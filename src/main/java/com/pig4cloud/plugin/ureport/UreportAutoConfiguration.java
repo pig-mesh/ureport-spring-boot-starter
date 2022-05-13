@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration(proxyBeanMethods = false)
 @ImportResource(UreportAutoConfiguration.CONTEXT)
 public class UreportAutoConfiguration {
+
 	static final String CONTEXT = "classpath:ureport-console-context.xml";
 
 	@Bean

@@ -11,7 +11,7 @@ UReport2 是一款基于架构在 Spring 之上纯 Java 的高性能报表引擎
 <dependency>
     <groupId>com.pig4cloud.plugin</groupId>
     <artifactId>ureport-spring-boot-starter</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 

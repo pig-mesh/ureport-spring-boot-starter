@@ -44,27 +44,31 @@ public class DfsReportProvider implements ReportProvider {
 	public void deleteReport(String file) {
 		try {
 			ossTemplate.removeObject(properties.getBucketName(), file);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			log.error("文件删除失败 ", e);
 		}
 	}
 
 	@Override
 	public List<ReportFile> getReportFiles() {
-		List<S3ObjectSummary> objectSummaryList = ossTemplate
-			.getAllObjectsByPrefix(properties.getBucketName(), PREFIX, true);
 
-		return objectSummaryList.stream().map(s3ObjectSummary ->
-			new ReportFile(s3ObjectSummary.getKey().replaceAll(PREFIX, "")
-			, s3ObjectSummary.getLastModified())).collect(Collectors.toList());
+		List<S3ObjectSummary> objectSummaryList = ossTemplate.getAllObjectsByPrefix(properties.getBucketName(), PREFIX);
+
+		return objectSummaryList.stream()
+				.map(s3ObjectSummary -> new ReportFile(s3ObjectSummary.getKey().replaceAll(PREFIX, ""),
+						s3ObjectSummary.getLastModified()))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public void saveReport(String file, String content) {
 		try {
-			@Cleanup InputStream inputStream = IOUtils.toInputStream(content);
+			@Cleanup
+			InputStream inputStream = IOUtils.toInputStream(content);
 			ossTemplate.putObject(properties.getBucketName(), file, inputStream);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			log.error("文件上传失败", e);
 		}
 	}
@@ -83,4 +87,5 @@ public class DfsReportProvider implements ReportProvider {
 	public String getPrefix() {
 		return PREFIX;
 	}
+
 }

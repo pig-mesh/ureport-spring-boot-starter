@@ -29,4 +29,5 @@ public class UreportExtConfig {
 	public UReportPropertyPlaceholderConfigurer uReportPropertyPlaceholderConfigurerPlus() {
 		return new UReportPropertyPlaceholderConfigurerPlus();
 	}
+
 }

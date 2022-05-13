@@ -20,4 +20,5 @@ public class UReportPropertyPlaceholderConfigurerPlus extends UReportPropertyPla
 		properties.setProperty("ureport.disableHttpSessionReportCache", "false");
 		this.setProperties(properties);
 	}
+
 }

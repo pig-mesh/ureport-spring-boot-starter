@@ -5,20 +5,21 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.2.RELEASE</version>
+		<version>2.6.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pig4cloud.plugin</groupId>
 	<artifactId>ureport-spring-boot-starter</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>ureport-spring-boot-starter</name>
 	<description>ureport spring boot 插件</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<ureport.version>2.2.9</ureport.version>
-		<oss.version>0.0.2</oss.version>
-		<mica.version>1.2.3</mica.version>
+		<oss.version>1.0.5</oss.version>
+		<mica.version>2.2.2</mica.version>
+		<spring.checkstyle.plugin>0.0.29</spring.checkstyle.plugin>
 	</properties>
 
 	<dependencies>
@@ -59,6 +60,17 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<!--代码格式插件，默认使用spring 规则-->
+			<plugin>
+				<groupId>io.spring.javaformat</groupId>
+				<artifactId>spring-javaformat-maven-plugin</artifactId>
+				<version>${spring.checkstyle.plugin}</version>
+			</plugin>
+		</plugins>
+	</build>
 
 	<profiles>
 		<profile>
@@ -106,15 +118,22 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.5</version>
+						<version>3.0.1</version>
 						<executions>
 							<execution>
+								<id>sign-artifacts</id>
 								<phase>verify</phase>
 								<goals>
 									<goal>sign</goal>
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
@@ -145,4 +164,5 @@
 			</distributionManagement>
 		</profile>
 	</profiles>
+
 </project>
